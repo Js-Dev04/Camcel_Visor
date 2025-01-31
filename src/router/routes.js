@@ -2,6 +2,7 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
+    
     children: [
       { path: '', component: () => import('src/pages/Principal.vue') }
     ]
@@ -9,6 +10,7 @@ const routes = [
   {
     path: '/subir',
     component: () => import('layouts/MainLayout.vue'),
+    
     children: [
       { path: '', component: () => import('src/pages/Subir.vue') }
     ]
@@ -16,10 +18,15 @@ const routes = [
   {
     path: '/editar',
     component: () => import('layouts/MainLayout.vue'),
+    
     children: [
       { path: '', component: () => import('src/pages/EditarNotiServs.vue') }
     ]
+  },{
+    path: '/Login',
+    component: () => import('src/pages/Login.vue'),
   },
+
 
   // Always leave this as last one,
   // but you can also remove it
