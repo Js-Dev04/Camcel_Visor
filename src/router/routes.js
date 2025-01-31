@@ -3,7 +3,21 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('src/pages/Principal.vue') }
+    ]
+  },
+  {
+    path: '/subir',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/Subir.vue') }
+    ]
+  },
+  {
+    path: '/editar',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/EditarNotiServs.vue') }
     ]
   },
 
