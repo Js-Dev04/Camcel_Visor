@@ -6,9 +6,9 @@ export const useAuthStore = defineStore('auth', () => {
   const nombre = ref(localStorage.getItem('nombre') || '');
   const token = ref(localStorage.getItem('token') || '');
 
-  const login = async (nombre, password) => {
+  const login = async (username, password) => { // Cambia "nombre" a "username"
     try {
-      const response = await axios.post('http://localhost:3000/api/login', { nombre, password });
+      const response = await axios.post('http://localhost:3000/api/login', { nombre: username, password });
       token.value = response.data.token;
       nombre.value = response.data.nombre;
       localStorage.setItem('token', token.value);
@@ -20,9 +20,10 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = () => {
     token.value = '';
-    user.value = null;
+    nombre.value = ''; // Corrige "user.value" a "nombre.value"
     localStorage.removeItem('token');
+    localStorage.removeItem('nombre'); // Asegúrate de eliminar el nombre también
   };
 
-  return { user, token, login, logout };
+  return { nombre, token, login, logout };
 });

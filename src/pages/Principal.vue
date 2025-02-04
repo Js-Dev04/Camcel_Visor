@@ -132,6 +132,7 @@ let socket = null;
 onMounted(() => {
   cargarEstados();
   cargarNoticias();
+  fetchMonitors()
   socket = io('http://localhost:3000'); // Cambia la URL según tu configuración
 
   socket.on('connect', () => {
@@ -254,6 +255,24 @@ async function cargarNoticias() {
   }
 }
 
+
+const monitors = ref([]);
+
+const fetchMonitors = async () => {
+  try {
+    const response = await axios.get("http://100.0.0.251:3001/api", {
+      headers: {
+        Authorization: "Bearer TU_TOKEN_API", // Reemplaza con tu token de Uptime Kuma
+        "Content-Type": "application/json",
+      },
+    });
+
+    monitors.value = response.data;
+    console.log("Monitores obtenidos:", monitors.value);
+  } catch (error) {
+    console.error("Error obteniendo monitores:", error);
+  }
+};
 
 const dialogoNoticia = ref(false);
 const noticiaSeleccionada = reactive({});
